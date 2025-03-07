@@ -4,12 +4,14 @@ class CustomInput extends StatelessWidget {
   final String textHint;
   final bool isPassword;
   final TextInputType keyboardInputType;
+  final TextEditingController? controller;
 
   const CustomInput({
     super.key,
     this.textHint = '',
     this.isPassword = false,
     this.keyboardInputType = TextInputType.text,
+    this.controller,
   });
 
   @override
@@ -17,6 +19,7 @@ class CustomInput extends StatelessWidget {
     return TextField(
       obscureText: isPassword,
       keyboardType: keyboardInputType,
+      controller: controller,
       decoration: InputDecoration(
         hintText: textHint,
         hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),

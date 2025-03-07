@@ -2,7 +2,16 @@ import 'package:allou/components/custom_input.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+  RegisterPage({super.key});
+
+  void handleRegister() {
+    print('Register method');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +27,22 @@ class RegisterPage extends StatelessWidget {
               CustomInput(
                 textHint: 'Type your email',
                 keyboardInputType: TextInputType.emailAddress,
+                controller: _emailController,
               ),
               SizedBox(height: 15),
-              CustomInput(isPassword: true, textHint: 'Type your password'),
+              CustomInput(
+                isPassword: true,
+                textHint: 'Type your password',
+                controller: _passwordController,
+              ),
               SizedBox(height: 15),
-              CustomInput(isPassword: true, textHint: 'Confirm password'),
+              CustomInput(
+                isPassword: true,
+                textHint: 'Confirm password',
+                controller: _confirmPasswordController,
+              ),
               SizedBox(height: 30),
-              RegisterButton(),
+              RegisterButton(handleLogin: handleRegister()),
               SizedBox(height: 20.0),
               TextButton(
                 onPressed: () {},
@@ -40,12 +58,13 @@ class RegisterPage extends StatelessWidget {
 }
 
 class RegisterButton extends StatelessWidget {
-  const RegisterButton({super.key});
+  final void handleLogin;
+  const RegisterButton({super.key, required this.handleLogin});
 
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      onPressed: () {},
+      onPressed: () => handleLogin,
       style: ButtonStyle(
         minimumSize: WidgetStatePropertyAll(Size(double.infinity, 50)),
         shape: WidgetStatePropertyAll(
