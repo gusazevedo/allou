@@ -1,4 +1,4 @@
-import 'package:allou/pages/register.dart';
+import 'package:allou/pages/login.dart';
 import 'package:allou/utils/themes.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: lightMode,
-      home: Scaffold(body: RegisterPage()),
+      home: Scaffold(body: LoginPage()),
     );
   }
 }

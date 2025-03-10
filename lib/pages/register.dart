@@ -42,7 +42,7 @@ class RegisterPage extends StatelessWidget {
                 controller: _confirmPasswordController,
               ),
               SizedBox(height: 30),
-              RegisterButton(handleLogin: handleRegister()),
+              RegisterButton(onPressed: handleRegister),
               SizedBox(height: 20.0),
               TextButton(
                 onPressed: () {},
@@ -58,13 +58,13 @@ class RegisterPage extends StatelessWidget {
 }
 
 class RegisterButton extends StatelessWidget {
-  final void handleLogin;
-  const RegisterButton({super.key, required this.handleLogin});
+  final VoidCallback onPressed;
+  const RegisterButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      onPressed: () => handleLogin,
+      onPressed: onPressed,
       style: ButtonStyle(
         minimumSize: WidgetStatePropertyAll(Size(double.infinity, 50)),
         shape: WidgetStatePropertyAll(

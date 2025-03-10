@@ -6,34 +6,40 @@ class LoginPage extends StatelessWidget {
   final TextEditingController _passwordController = TextEditingController();
   LoginPage({super.key});
 
+  void handleLogin() {
+    print("handle login");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              WelcomeMessage(),
-              SizedBox(height: 80),
-              CustomInput(
-                textHint: 'Type your email',
-                keyboardInputType: TextInputType.emailAddress,
-                controller: _emailController,
-              ),
-              SizedBox(height: 15),
-              CustomInput(
-                isPassword: true,
-                textHint: 'Type your password',
-                controller: _passwordController,
-              ),
-              SizedBox(height: 30),
-              LoginButton(),
-              SizedBox(height: 20.0),
-              TextButton(onPressed: () {}, child: const Text('Register now')),
-              SizedBox(height: 20),
-            ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                WelcomeMessage(),
+                SizedBox(height: 80),
+                CustomInput(
+                  textHint: 'Type your email',
+                  keyboardInputType: TextInputType.emailAddress,
+                  controller: _emailController,
+                ),
+                SizedBox(height: 15),
+                CustomInput(
+                  isPassword: true,
+                  textHint: 'Type your password',
+                  controller: _passwordController,
+                ),
+                SizedBox(height: 30),
+                LoginButton(onPressed: handleLogin),
+                SizedBox(height: 20.0),
+                TextButton(onPressed: () {}, child: const Text('Register now')),
+                SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
@@ -42,12 +48,14 @@ class LoginPage extends StatelessWidget {
 }
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+  final VoidCallback onPressed;
+
+  const LoginButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: ButtonStyle(
         minimumSize: WidgetStatePropertyAll(Size(double.infinity, 50)),
         shape: WidgetStatePropertyAll(
