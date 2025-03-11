@@ -1,4 +1,5 @@
 import 'package:allou/components/custom_input.dart';
+import 'package:allou/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -7,8 +8,23 @@ class LoginPage extends StatelessWidget {
   final VoidCallback handleRegister;
   LoginPage({super.key, required this.handleRegister});
 
-  void handleLogin() {
-    print("handle login");
+  void handleLogin(BuildContext context) async {
+    print('hi there');
+    final authService = AuthService();
+
+    try {
+      await authService.signInEmailPassword(
+        _emailController.text,
+        _passwordController.text,
+      );
+    } catch (error) {
+      if (context.mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(title: Text(error.toString())),
+        );
+      }
+    }
   }
 
   @override
@@ -35,7 +51,7 @@ class LoginPage extends StatelessWidget {
                   controller: _passwordController,
                 ),
                 SizedBox(height: 30),
-                LoginButton(onPressed: handleLogin),
+                LoginButton(onPressed: () => handleLogin(context)),
                 SizedBox(height: 20.0),
                 TextButton(
                   onPressed: handleRegister,
@@ -52,7 +68,7 @@ class LoginPage extends StatelessWidget {
 }
 
 class LoginButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final void Function() onPressed;
 
   const LoginButton({super.key, required this.onPressed});
 

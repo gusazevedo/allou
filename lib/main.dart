@@ -1,5 +1,5 @@
 import 'package:allou/firebase_options.dart';
-import 'package:allou/pages/auth.dart';
+import 'package:allou/pages/auth/gate.dart';
 import 'package:allou/utils/themes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: lightMode,
-      home: Scaffold(body: AuthPage()),
+      home: Scaffold(body: AuthGate()),
     );
   }
 }
