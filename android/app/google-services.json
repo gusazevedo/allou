@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "847785234902",
+    "project_id": "allou-e18bc",
+    "storage_bucket": "allou-e18bc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847785234902:android:a37fa9d3eb080b53ffd477",
+        "android_client_info": {
+          "package_name": "com.allou.chat.allou"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhZchC2wp2hBTy2qSMjiKWpQxecTbdDVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
