@@ -7,7 +7,8 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  RegisterPage({super.key});
+  final VoidCallback handleLogin;
+  RegisterPage({super.key, required this.handleLogin});
 
   void handleRegister() {
     print('Register method');
@@ -17,39 +18,41 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              WelcomeMessage(),
-              SizedBox(height: 80),
-              CustomInput(
-                textHint: 'Type your email',
-                keyboardInputType: TextInputType.emailAddress,
-                controller: _emailController,
-              ),
-              SizedBox(height: 15),
-              CustomInput(
-                isPassword: true,
-                textHint: 'Type your password',
-                controller: _passwordController,
-              ),
-              SizedBox(height: 15),
-              CustomInput(
-                isPassword: true,
-                textHint: 'Confirm password',
-                controller: _confirmPasswordController,
-              ),
-              SizedBox(height: 30),
-              RegisterButton(onPressed: handleRegister),
-              SizedBox(height: 20.0),
-              TextButton(
-                onPressed: () {},
-                child: const Text('Already have account? Login now'),
-              ),
-              SizedBox(height: 20),
-            ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                WelcomeMessage(),
+                SizedBox(height: 80),
+                CustomInput(
+                  textHint: 'Type your email',
+                  keyboardInputType: TextInputType.emailAddress,
+                  controller: _emailController,
+                ),
+                SizedBox(height: 15),
+                CustomInput(
+                  isPassword: true,
+                  textHint: 'Type your password',
+                  controller: _passwordController,
+                ),
+                SizedBox(height: 15),
+                CustomInput(
+                  isPassword: true,
+                  textHint: 'Confirm password',
+                  controller: _confirmPasswordController,
+                ),
+                SizedBox(height: 30),
+                RegisterButton(onPressed: handleRegister),
+                SizedBox(height: 20.0),
+                TextButton(
+                  onPressed: handleLogin,
+                  child: const Text('Already have account? Login now'),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
@@ -98,7 +101,7 @@ class WelcomeMessage extends StatelessWidget {
           const Text(
             'Welcome to \nAllou 👋',
             textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 48, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 48, fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 10),
           Text(

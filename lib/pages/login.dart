@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 class LoginPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  LoginPage({super.key});
+  final VoidCallback handleRegister;
+  LoginPage({super.key, required this.handleRegister});
 
   void handleLogin() {
     print("handle login");
@@ -36,7 +37,10 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 30),
                 LoginButton(onPressed: handleLogin),
                 SizedBox(height: 20.0),
-                TextButton(onPressed: () {}, child: const Text('Register now')),
+                TextButton(
+                  onPressed: handleRegister,
+                  child: const Text('Register now'),
+                ),
                 SizedBox(height: 20),
               ],
             ),
@@ -89,7 +93,7 @@ class WelcomeMessage extends StatelessWidget {
           const Text(
             'Welcome to \nAllou 👋',
             textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 48, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 48, fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 10),
           Text(
