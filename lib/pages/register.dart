@@ -1,4 +1,5 @@
 import 'package:allou/components/custom_input.dart';
+import 'package:allou/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -10,8 +11,34 @@ class RegisterPage extends StatelessWidget {
   final VoidCallback handleLogin;
   RegisterPage({super.key, required this.handleLogin});
 
-  void handleRegister() {
-    print('Register method');
+  void handleRegister(BuildContext context) async {
+    final auth = AuthService();
+
+    try {
+      await auth.signUpEmailPassword(
+        _emailController.text,
+        _passwordController.text,
+        _confirmPasswordController.text,
+      );
+    } catch (error) {
+      if (context.mounted) {
+        print(error);
+        showDialog(
+          context: context,
+          builder:
+              (context) => AlertDialog(
+                title: Text('Warning'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'OK'),
+                    child: const Text('Try again'),
+                  ),
+                ],
+                content: Text(error.toString()),
+              ),
+        );
+      }
+    }
   }
 
   @override
@@ -44,7 +71,7 @@ class RegisterPage extends StatelessWidget {
                   controller: _confirmPasswordController,
                 ),
                 SizedBox(height: 30),
-                RegisterButton(onPressed: handleRegister),
+                RegisterButton(onPressed: () => handleRegister(context)),
                 SizedBox(height: 20.0),
                 TextButton(
                   onPressed: handleLogin,

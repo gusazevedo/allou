@@ -19,4 +19,35 @@ class AuthService {
       throw Exception(error.code);
     }
   }
+
+  // Email + password sign up
+  Future<UserCredential> signUpEmailPassword(
+    String email,
+    String password,
+    String cfmPassword,
+  ) async {
+    try {
+      if (password == cfmPassword) {
+        UserCredential credential = await auth.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+
+        return credential;
+      } else {
+        throw Exception("Passwords do not match");
+      }
+    } on FirebaseAuthException catch (error) {
+      throw Exception(error.code);
+    }
+  }
+
+  // Logout
+  Future<void> signOut() async {
+    try {
+      await auth.signOut();
+    } on FirebaseAuthException catch (error) {
+      throw Exception(error.code);
+    }
+  }
 }

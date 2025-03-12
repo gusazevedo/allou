@@ -9,7 +9,6 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key, required this.handleRegister});
 
   void handleLogin(BuildContext context) async {
-    print('hi there');
     final authService = AuthService();
 
     try {
@@ -21,7 +20,17 @@ class LoginPage extends StatelessWidget {
       if (context.mounted) {
         showDialog(
           context: context,
-          builder: (context) => AlertDialog(title: Text(error.toString())),
+          builder:
+              (context) => AlertDialog(
+                title: Text('Warning'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'OK'),
+                    child: const Text('Try again'),
+                  ),
+                ],
+                content: Text(error.toString()),
+              ),
         );
       }
     }
