@@ -22,7 +22,6 @@ class RegisterPage extends StatelessWidget {
       );
     } catch (error) {
       if (context.mounted) {
-        print(error);
         showDialog(
           context: context,
           builder:
